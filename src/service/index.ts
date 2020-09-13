@@ -23,7 +23,7 @@ class ToDoService extends Observable {
   };
 
   public async createNewTask(task: string) {
-    const uniqueId = Math.floor(Math.random() * 20);
+    //const uniqueId = Math.floor(Math.random() * 20);
     // const body =  `{\"id\":\"${uniqueId}\",\"text\":\"${task}\"}`;
 
     // await useFetch('http://localhost:3000/api/tasks', {body, method: 'POST'});

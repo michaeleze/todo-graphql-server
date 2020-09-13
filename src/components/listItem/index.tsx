@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './index.css';
 import Option from "../option";
 import {IListItem} from './index.interface';

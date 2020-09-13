@@ -8,9 +8,9 @@
     "url": "git+https://github.com/michaeleze/todo-graphql-server.git"
   },
   "scripts": {
-    "server": "nodemon server/index.gql",
+    "server": "nodemon lambda/graphql.js",
     "start:app": "react-scripts start",
-    "start": "npm run build && npm run start:server",
+    "start": "CI= npm run build",
     "test": "react-scripts test --watch --coverage",
     "start:lambda": "netlify-lambda serve lambda",
     "build": "run-p build:**",

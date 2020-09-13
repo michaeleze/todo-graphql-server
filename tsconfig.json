@@ -21,6 +21,6 @@
     "jsx": "react"
   },
   "include": [
-    "src", "server/index.gql.js"
+    "src", "server/index.gql.js", "lambda "
   ]
 }

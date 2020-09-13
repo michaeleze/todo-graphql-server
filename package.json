@@ -14,7 +14,7 @@
     "test": "react-scripts test --watch --coverage",
     "start:lambda": "netlify-lambda serve lambda",
     "build": "run-p build:**",
-    "build:app": "react-scripts build",
+    "build:app": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"

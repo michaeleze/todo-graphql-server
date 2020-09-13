@@ -16,10 +16,12 @@ class ToDoService extends Observable {
   }
 
   public async getTaskList() {
-    useFetch('http://localhost:3000/api/tasks', {method: 'GET'})
+    useFetch("/.netlify/functions/graphql", { method: "GET" })
       .then(response => response && response.json())
       .then(response => this.notify(Object.values(response)))
-      .catch(err => {console.log(err)});
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   public async createNewTask(task: string) {

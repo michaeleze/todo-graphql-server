@@ -65,15 +65,11 @@ const resolvers = {
     }
 };
 
-const serverOptions = {
-    port: process.env.PORT || 5000,
-};
-
 const server = new GraphQLServer({
     typeDefs,
     resolvers
 });
 
-server.listen(serverOptions).then(({ url }) => {
+server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
     console.log(`🚀 Server ready at ${url}`);
 });

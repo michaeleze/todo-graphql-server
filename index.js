@@ -58,7 +58,7 @@ const resolvers = {
             return todos;
         },
         deleteTask: (parent, args) => {
-            todos.slice(todos.indexOf(args.id), 0);
+            todos.splice(todos.indexOf(args.id), 1);
 
             return todos;
         }

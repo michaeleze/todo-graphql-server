@@ -13,8 +13,8 @@ type Query {
 
 type Mutation {
   addTask(id: ID!, text: String!): [Todo]!,
-  updateTask(id: String!, text: String!): [Todo]!,
-  deleteTask(id: String!): [Todo]!
+  updateTask(id: ID!, text: String!): [Todo]!,
+  deleteTask(id: ID!): [Todo]!
 }
 
 type Todo { 

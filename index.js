@@ -25,7 +25,7 @@ type Todo {
 
 const resolvers = {
     Query: {
-        todos: () => todos
+        getTaskList: () => todos
     },
     Mutation: {
         addTask: (parent, args) => { 

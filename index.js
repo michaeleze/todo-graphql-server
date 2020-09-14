@@ -8,7 +8,7 @@ const todos = [
 
 const typeDefs = `
 type Query {
-  todos: [Todo]!
+  getTaskList: [Todo]!
 }
 
 type Mutation {

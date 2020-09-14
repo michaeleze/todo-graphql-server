@@ -8,7 +8,7 @@
     "url": "git+https://github.com/michaeleze/todo-graphql-server.git"
   },
   "scripts": {
-    "start": "nodemon index",
+    "start": "node index",
     "test": "react-scripts test --watch --coverage"
   },
   "eslintConfig": {

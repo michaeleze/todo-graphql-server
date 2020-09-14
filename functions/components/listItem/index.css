@@ -1,0 +1,23 @@
+.list--container {
+  background-color: white;
+  border-radius: 16px ;
+  box-sizing: border-box;
+  color: black;
+  display: grid;
+  grid-template-areas:  ". text text text text"  ". . . edit edit";
+  grid-template-columns: 1rem repeat(4, 1fr);
+  margin: 15px 0;
+  min-height: 100px;
+  width: 100%;
+  padding: 10px;
+}
+
+.list-item--edit {
+  grid-area: edit;
+  padding: 10px 0;
+}
+
+.list-item-field {
+  grid-area: text;
+  padding: 10px 0;
+}

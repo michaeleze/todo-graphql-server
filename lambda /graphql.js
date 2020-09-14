@@ -74,5 +74,9 @@ const server = new GraphQLServer({
     resolvers
 });
 
-exports.handler = server.createHandler();
+exports.handler = server.createHandler({
+    cors: {
+        origin: '*'
+    }
+});
 

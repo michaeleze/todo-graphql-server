@@ -10,10 +10,12 @@
   "scripts": {
     "server": "nodemon lambda/graphql.js",
     "start:app": "react-scripts start",
-    "start": "CI= npm run build",
+    "start": "npm run build",
     "test": "react-scripts test --watch --coverage",
     "start:lambda": "netlify-lambda serve lambda",
-    "build": "run-p build:**",
+    "bundle": "cpx 'src/**/*' functions",
+    "build:lambda": "netlify-lambda build lambda",
+    "build": "run-p build:** && start:lambda",
     "build:app": "react-scripts build"
   },
   "eslintConfig": {
@@ -32,6 +34,7 @@
     "apollo-server-lambda": "^2.17.0",
     "body-parser": "1.19.0",
     "concurrently": "^5.3.0",
+    "cpx": "^1.5.0",
     "express": "4.17.1",
     "graphql": "^15.3.0",
     "graphql-yoga": "^1.18.3",

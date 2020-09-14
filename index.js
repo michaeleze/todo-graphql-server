@@ -66,7 +66,7 @@ const resolvers = {
 };
 
 const serverOptions = {
-    port: process.env.PORT || 5000,
+    port: process.env.PORT || 4000,
 };
 
 const server = new GraphQLServer({

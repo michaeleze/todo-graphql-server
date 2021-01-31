@@ -71,11 +71,9 @@ const resolvers = {
       };
 
       for(const item of todos) {
-        console.log(item)
         if (item.id === args.id) {
-          console.log(item)
           const index = todos.indexOf(item);
-          delete args[args.indexOf(index)]
+          delete args[index]
         }
       }
       //todos.splice(index, 1);

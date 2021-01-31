@@ -65,15 +65,11 @@ const resolvers = {
 
       return todos;
     },
-    deleteTask: (parent: any, args: any) => {
-      if (!args || !args.id) {
-        console.log('Invalid task format');
-      };
-
+    deleteTask: (args: any) => {
       for(const item of todos) {
         if (item.id === args.id) {
           const index = todos.indexOf(item);
-          delete args[index]
+          delete todos[index]
         }
       }
       //todos.splice(index, 1);

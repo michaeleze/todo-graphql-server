@@ -56,23 +56,29 @@ const resolvers = {
       return todos;
     },
     updateTask: (parent: any, args: any) => {
-      if (!args || !args.id || !args.text) {
+      if (!args || !args.id) {
         console.log('Invalid task format');
       };
 
       const index = todos.indexOf(args.id);
       todos[index].text = args.text;
 
-      return Promise.resolve(todos);
+      return todos;
     },
     deleteTask: (parent: any, args: any) => {
-      if (!args || !args.id || !args.text) {
+      if (!args || !args.id) {
         console.log('Invalid task format');
       };
 
-      const index = todos.indexOf(args.id);
-      todos.splice(index, 1);
-
+      for(const item of todos) {
+        console.log(item)
+        if (item.id === args.id) {
+          console.log(item)
+          const index = todos.indexOf(item);
+          delete args[args.indexOf(index)]
+        }
+      }
+      //todos.splice(index, 1);
       return todos;
     }
 };

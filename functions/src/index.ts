@@ -1,9 +1,10 @@
 import * as functions from 'firebase-functions';
+
 const express = require('express');
 const cors = require('cors');
-const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
-const { URLSearchParams } = require('url');
+const {graphqlHTTP} = require('express-graphql');
+const {buildSchema} = require('graphql');
+const {URLSearchParams} = require('url');
 
 const typeDefs = `
 type Query {
@@ -23,9 +24,9 @@ type Todo {
 `
 
 const todos = [
-  { id: '1', text: 'Go shopping at Versace' },
-  { id: '2', text: 'Travel Japan' },
-  { id: '3', text: 'Go vacation at Maldive' },
+  {id: '1', text: 'Go shopping at Versace'},
+  {id: '2', text: 'Travel Japan'},
+  {id: '3', text: 'Go vacation at Maldive'},
 ];
 
 const app = express();
@@ -35,48 +36,51 @@ const schema = buildSchema(typeDefs);
 
 // Query and Mutation logic
 const resolvers = {
-    getTaskList: () => todos,
-    addTask: (args: any) => {
-      const currentArg = todos.find(item => (
-        item.id === args.id
-      ));
+  getTaskList: () => todos,
+  addTask: ({id, text}: { id: string, text: string }) => {
+    const task = todos.find(item => item.id === id);
 
-      if (args.id === currentArg) {
-        console.log('Conflict. Task already defined');
-        return;
-      }
+    if (!task) {
+      const newTask = { id: id, text: text };
 
-      const newItem = {
-        id: args.id,
-        text: args.text,
-      };
-
-      todos.push(newItem);
-
-      return todos;
-    },
-    updateTask: (args: any) => {
-      // if (!args.id) {
-      //   console.log('Invalid task format');
-      // };
-
-      const index = todos.indexOf(args.id);
-      todos[index].text = args.text;
-
-      return todos;
-    },
-    deleteTask: (args: any) => {
-      // for(const item of todos) {
-      //   if (item.id === args.id) {
-      //     const index = todos.indexOf(item);
-      //     delete todos[index]
-      //   }
-      // }
-      const task = todos.find(item => item.id === args.id);
-      const index = todos.indexOf(task);
-      todos.splice(index, 1);
-      return todos;
+      todos.push(newTask);
     }
+    else {
+      new Error('Conflict. Task already defined');
+    }
+
+    return todos;
+  },
+  updateTask: ({id, text}: { id: string, text: string }) => {
+    if (!id || !text) {
+      console.log('Invalid task format');
+    }
+    ;
+
+    const task = todos.find(item => item.id === id);
+    (task as any).text = text;
+
+    return todos;
+  },
+  deleteTask: ({id}: { id: string }) => {
+    if (!id) {
+      console.log('Unknown ID');
+    }
+    ;
+
+    const task = todos.find(item => item.id === id);
+    const index = todos.indexOf(task as any);
+    todos.splice(index, 1);
+
+    return todos;
+
+    // for(const item of todos) {
+    //   if (item.id === args.id) {
+    //     const index = todos.indexOf(item);
+    //     delete todos[index]
+    //   }
+    // }
+  }
 };
 
 // Server config

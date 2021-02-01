@@ -36,7 +36,7 @@ const schema = buildSchema(typeDefs);
 // Query and Mutation logic
 const resolvers = {
     getTaskList: () => todos,
-    addTask: (parent: any, args: any) => {
+    addTask: (args: any) => {
       const currentArg = todos.find(item => (
         item.id === args.id
       ));
@@ -55,10 +55,10 @@ const resolvers = {
 
       return todos;
     },
-    updateTask: (parent: any, args: any) => {
-      if (!args || !args.id) {
-        console.log('Invalid task format');
-      };
+    updateTask: (args: any) => {
+      // if (!args.id) {
+      //   console.log('Invalid task format');
+      // };
 
       const index = todos.indexOf(args.id);
       todos[index].text = args.text;
@@ -66,13 +66,19 @@ const resolvers = {
       return todos;
     },
     deleteTask: (args: any) => {
+      // for(const item of todos) {
+      //   if (item.id === args.id) {
+      //     const index = todos.indexOf(item);
+      //     delete todos[index]
+      //   }
+      // }
       for(const item of todos) {
         if (item.id === args.id) {
           const index = todos.indexOf(item);
-          delete todos[index]
+
+          todos.splice(index, 1);
         }
       }
-      //todos.splice(index, 1);
       return todos;
     }
 };
@@ -84,6 +90,6 @@ app.use('/', graphqlHTTP({
   graphiql: true,
 }));
 
-exports.graphql = functions.https.onRequest(app);
+exports.graphqlApp = functions.https.onRequest(app);
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript

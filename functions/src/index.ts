@@ -46,7 +46,7 @@ const resolvers = {
       todos.push(newTask);
     }
     else {
-      new Error('Conflict. Task already defined');
+      throw Error('Conflict. Task already defined');
     }
 
     return todos;

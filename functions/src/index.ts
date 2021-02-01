@@ -72,13 +72,9 @@ const resolvers = {
       //     delete todos[index]
       //   }
       // }
-      for(const item of todos) {
-        if (item.id === args.id) {
-          const index = todos.indexOf(item);
-
-          todos.splice(index, 1);
-        }
-      }
+      const task = todos.find(item => item.id === args.id);
+      const index = todos.indexOf(task);
+      todos.splice(index, 1);
       return todos;
     }
 };

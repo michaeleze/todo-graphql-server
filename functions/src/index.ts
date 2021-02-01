@@ -41,21 +41,19 @@ const resolvers = {
     const task = todos.find(item => item.id === id);
 
     if (!task) {
-      const newTask = { id: id, text: text };
+      const newTask = {id: id, text: text};
 
       todos.push(newTask);
-    }
-    else {
+    } else {
       throw Error('Conflict. Task already defined');
-    }
+    };
 
     return todos;
   },
   updateTask: ({id, text}: { id: string, text: string }) => {
     if (!id || !text) {
       console.log('Invalid task format');
-    }
-    ;
+    };
 
     const task = todos.find(item => item.id === id);
     (task as any).text = text;
@@ -65,8 +63,7 @@ const resolvers = {
   deleteTask: ({id}: { id: string }) => {
     if (!id) {
       console.log('Unknown ID');
-    }
-    ;
+    };
 
     const task = todos.find(item => item.id === id);
     const index = todos.indexOf(task as any);
